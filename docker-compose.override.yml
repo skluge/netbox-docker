@@ -14,6 +14,7 @@ services:
     labels:
     - traefik.enable=true
     - traefik.http.routers.netbox.rule=Host(`netbox.graphpix.de`)
+    - traefik.http.services.netbox.loadbalancer.server.port=8080
   netbox-worker:
     volumes:
     - /portainer/appdata/netbox/configuration:/etc/netbox/config:z,ro
