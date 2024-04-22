@@ -8,6 +8,8 @@ services:
     - netbox-scripts-files:/opt/netbox/netbox/scripts:rw
     healthcheck:
       retries: 15
+    ports:
+    - 8000:8080
     networks:
     - default
     - traefik_default
