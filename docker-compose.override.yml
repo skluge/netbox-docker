@@ -13,7 +13,7 @@ services:
     - traefik_default
     labels:
     - traefik.enable=true
-    - traefik.http.routers.wiki.rule=Host(`netbox.graphpix.de`)
+    - traefik.http.routers.netbox.rule=Host(`netbox.graphpix.de`)
   netbox-worker:
     volumes:
     - /portainer/appdata/netbox/configuration:/etc/netbox/config:z,ro
