@@ -2,7 +2,7 @@ version: '3.4'
 services:
   netbox:
     volumes:
-    - ./appdata/netbox:/etc/netbox/config:z,ro
+    - /portainer/appdata/netbox:/etc/netbox/config:z,ro
     - netbox-media-files:/opt/netbox/netbox/media:rw
     - netbox-reports-files:/opt/netbox/netbox/reports:rw
     - netbox-scripts-files:/opt/netbox/netbox/scripts:rw
@@ -10,13 +10,13 @@ services:
       retries: 15
   netbox-worker:
     volumes:
-    - ./appdata/netbox:/etc/netbox/config:z,ro
+    - /portainer/appdata/netbox:/etc/netbox/config:z,ro
     - netbox-media-files:/opt/netbox/netbox/media:rw
     - netbox-reports-files:/opt/netbox/netbox/reports:rw
     - netbox-scripts-files:/opt/netbox/netbox/scripts:rw
   netbox-housekeeping:
     volumes:
-    - ./appdata/netbox:/etc/netbox/config:z,ro
+    - /portainer/appdata/netbox:/etc/netbox/config:z,ro
     - netbox-media-files:/opt/netbox/netbox/media:rw
     - netbox-reports-files:/opt/netbox/netbox/reports:rw
     - netbox-scripts-files:/opt/netbox/netbox/scripts:rw
