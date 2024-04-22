@@ -2,21 +2,33 @@ version: '3.4'
 services:
   netbox:
     volumes:
-    - /portainer/appdata/netbox:/etc/netbox/config:z,ro
+    - /portainer/appdata/netbox/configuration:/etc/netbox/config:z,ro
     - netbox-media-files:/opt/netbox/netbox/media:rw
     - netbox-reports-files:/opt/netbox/netbox/reports:rw
     - netbox-scripts-files:/opt/netbox/netbox/scripts:rw
     healthcheck:
       retries: 15
+    networks:
+    - default
+    - traefik_default
+    labels:
+    - traefik.enable=true
+    - traefik.http.routers.wiki.rule=Host(`netbox.graphpix.de`)
   netbox-worker:
     volumes:
-    - /portainer/appdata/netbox:/etc/netbox/config:z,ro
+    - /portainer/appdata/netbox/configuration:/etc/netbox/config:z,ro
     - netbox-media-files:/opt/netbox/netbox/media:rw
     - netbox-reports-files:/opt/netbox/netbox/reports:rw
     - netbox-scripts-files:/opt/netbox/netbox/scripts:rw
   netbox-housekeeping:
     volumes:
-    - /portainer/appdata/netbox:/etc/netbox/config:z,ro
+    - /portainer/appdata/netbox/configuration:/etc/netbox/config:z,ro
     - netbox-media-files:/opt/netbox/netbox/media:rw
     - netbox-reports-files:/opt/netbox/netbox/reports:rw
     - netbox-scripts-files:/opt/netbox/netbox/scripts:rw
+
+networks:
+  default:    
+    name: netbox_default
+  traefik_default:
+    external: true
